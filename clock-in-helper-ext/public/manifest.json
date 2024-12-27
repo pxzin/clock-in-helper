@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Clock-in Helper",
+  "version": "1.0",
+  "description": "Auxilia no registro de horas de trabalho.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    },
+    "default_title": "Clock-in Helper"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
