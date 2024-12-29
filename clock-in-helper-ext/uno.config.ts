@@ -1,24 +1,17 @@
 import { defineConfig, presetIcons, presetUno } from 'unocss';
+import { presetRadix } from 'unocss-preset-radix';
 
 export default defineConfig({
-  presets: [presetUno(), presetIcons()],
-  theme: {
-    colors: {
-      light: {
-        background: '#ffffff',
-        text: '#000000',
-        primary: '#1E90FF',
+  presets: [
+    presetUno({}),
+    presetIcons(),
+    presetRadix({
+      palette: ['blue', 'green', 'red', 'amber', 'gray'],
+      darkSelector: '.dark',
+      aliases: {
+        primary: 'green',
+        base: 'slate',
       },
-      dark: {
-        background: '#1e1e1e',
-        text: '#ffffff',
-        primary: '#FF69B4',
-      },
-    },
-  },
-  shortcuts: {
-    'theme-bg': 'bg-[var(--background)]',
-    'theme-text': 'text-[var(--text)]',
-    'theme-primary': 'text-[var(--primary)]',
-  },
+    }),
+  ],
 });

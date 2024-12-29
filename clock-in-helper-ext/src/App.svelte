@@ -19,12 +19,23 @@
   }
 </script>
 
-<main class="theme-bg theme-text min-h-screen p-4">
+<main class="bg-gray1 text-gray12 min-h-screen p-4">
   <Header subtitle="Simplifique seu registro de horas" />
   <button
-    class="theme-primary border p-2 rounded-md mt-4"
+    class="hue-primary bg-hue2 text-hue9 border p-2 rounded-md mt-4"
     on:click={toggleTheme}
   >
     Alternar Tema ({currentTheme})
   </button>
+  <p class="bg-brand-primary">
+    text-primary-900 Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  </p>
+  <p class="hue-red text-hue-9">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  </p>
+  <p class="p-4 bg-gray1 text-amber12">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  </p>
+
+  <div class="p-4 bg-gray12 text-gray1">Text on gray background</div>
 </main>

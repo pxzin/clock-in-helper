@@ -65,6 +65,9 @@ importers:
       unocss:
         specifier: ^0.65.3
         version: 0.65.3(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(jiti@2.4.2)(tsx@4.19.2))(vue@3.5.13(typescript@5.6.3))
+      unocss-preset-radix:
+        specifier: ^2.5.6
+        version: 2.5.6
       vite:
         specifier: ^6.0.5
         version: 6.0.6(jiti@2.4.2)(tsx@4.19.2)
@@ -492,6 +495,9 @@ packages:
   '@polka/url@1.0.0-next.28':
     resolution: {integrity: sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==}
 
+  '@radix-ui/colors@3.0.0-rc.4':
+    resolution: {integrity: sha512-dUG9WQCdjKPiiqbQsahUGmOuC+9kCltckQtej7hkVIQp56xirLaMsNrOs9xMYXnIbNqK/vZCmoEk+q1Nda+2AA==}
+
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
     engines: {node: '>=14.0.0'}
@@ -683,6 +689,9 @@ packages:
   '@unocss/config@0.65.3':
     resolution: {integrity: sha512-H+UpEPo47DeEsLbjHMby42MJ+lx7vXltFOdpgXFKutLkT034VoXmN1lgrAh9lZ4ow3iuUfEatHyuWffpOQf9gA==}
     engines: {node: '>=14'}
+
+  '@unocss/core@0.55.7':
+    resolution: {integrity: sha512-c+bWe844Xjlwc1EPwHj0+n3LpntJG7ELPbEOOxNIG+CQdcEX0l1G0rkM8+nKstJ9WJmgpf1HdJQLVMF62HXvhw==}
 
   '@unocss/core@0.65.3':
     resolution: {integrity: sha512-xYkJ63lIadL6KqvGcaE2fFeLvo6rC1F+e+R9EFn0Aj0ArMRhiltZk8vvLFHP7iYjjdTdqDkAr/7IdrTosTo8Pg==}
@@ -1498,6 +1507,9 @@ packages:
   unconfig@0.6.0:
     resolution: {integrity: sha512-4C67J0nIF2QwSXty2kW3zZx1pMZ3iXabylvJWWgHybWVUcMf9pxwsngoQt0gC+AVstRywFqrRBp3qOXJayhpOw==}
 
+  unocss-preset-radix@2.5.6:
+    resolution: {integrity: sha512-l5tY8ILcvgQNwe0/5zw7NckoD3WL8LSIqqgsKRBv36dTbngR06dCBqq9H33WcFnwqnFtRXZWMlipoXKLpCKOww==}
+
   unocss@0.65.3:
     resolution: {integrity: sha512-v/nQ7BVIeW9UlEPElOu6xwqp0TTF2dZeIOfzos52b/N0cwWB9dBOjZM5hTn//ePQVzXm/M/n+Lm8E7gRP4TUfg==}
     engines: {node: '>=14'}
@@ -1877,6 +1889,8 @@ snapshots:
 
   '@polka/url@1.0.0-next.28': {}
 
+  '@radix-ui/colors@3.0.0-rc.4': {}
+
   '@rollup/pluginutils@5.1.4(rollup@4.29.1)':
     dependencies:
       '@types/estree': 1.0.6
@@ -2084,6 +2098,8 @@ snapshots:
       unconfig: 0.6.0
     transitivePeerDependencies:
       - supports-color
+
+  '@unocss/core@0.55.7': {}
 
   '@unocss/core@0.65.3': {}
 
@@ -3000,6 +3016,11 @@ snapshots:
       importx: 0.5.1
     transitivePeerDependencies:
       - supports-color
+
+  unocss-preset-radix@2.5.6:
+    dependencies:
+      '@radix-ui/colors': 3.0.0-rc.4
+      '@unocss/core': 0.55.7
 
   unocss@0.65.3(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(jiti@2.4.2)(tsx@4.19.2))(vue@3.5.13(typescript@5.6.3)):
     dependencies:
