@@ -8,7 +8,7 @@ export default defineConfig({
     presetUno({}),
     presetIcons(),
     presetRadix({
-      palette: ['blue', 'green', 'red', 'amber', 'gray'],
+      palette: ['blue', 'green', 'red', 'slate', 'gray'],
       darkSelector: '.dark',
       aliases: {
         primary: 'green',
