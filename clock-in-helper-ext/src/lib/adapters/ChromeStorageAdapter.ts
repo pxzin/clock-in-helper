@@ -1,4 +1,4 @@
-import { StorageAdapter } from './StorageAdapter';
+import type { StorageAdapter } from './StorageAdapter';
 
 export class ChromeStorageAdapter implements StorageAdapter {
   async get<T>(key: string): Promise<T | null> {

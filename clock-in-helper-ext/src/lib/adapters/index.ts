@@ -1,4 +1,4 @@
-import { StorageAdapter } from './StorageAdapter';
+import type { StorageAdapter } from './StorageAdapter';
 import { ChromeStorageAdapter } from './ChromeStorageAdapter';
 import { LocalStorageAdapter } from './LocalStorageAdapter';
 
