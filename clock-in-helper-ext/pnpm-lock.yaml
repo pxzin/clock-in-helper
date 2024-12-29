@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@unocss/reset':
+        specifier: ^0.65.3
+        version: 0.65.3
     devDependencies:
       '@iconify-json/mdi':
         specifier: ^1.2.2
@@ -30,6 +34,9 @@ importers:
         specifier: ^0.65.3
         version: 0.65.3
       '@unocss/preset-uno':
+        specifier: ^0.65.3
+        version: 0.65.3
+      '@unocss/preset-web-fonts':
         specifier: ^0.65.3
         version: 0.65.3
       eslint:
