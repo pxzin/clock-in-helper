@@ -1,21 +1,17 @@
 <script lang="ts">
   import { Icon } from '$lib/components';
   import { Button } from '$lib/components/primitives';
-
-  let currentDate: Date = new Date();
-
-  const formatDate = (date: Date): string => {
-    return date.toISOString().split('T')[0];
-  };
+  import { selectedDate } from '$lib/store/selectedDate';
+  import { formatDate } from '$lib/utils/formatDate';
 
   const previousDay = (): void => {
-    currentDate.setDate(currentDate.getDate() - 1);
-    currentDate = new Date(currentDate);
+    $selectedDate.setDate($selectedDate.getDate() - 1);
+    $selectedDate = new Date($selectedDate);
   };
 
   const nextDay = (): void => {
-    currentDate.setDate(currentDate.getDate() + 1);
-    currentDate = new Date(currentDate);
+    $selectedDate.setDate($selectedDate.getDate() + 1);
+    $selectedDate = new Date($selectedDate);
   };
 </script>
 
@@ -23,7 +19,7 @@
   <Button color="secondary" variant="text" onclick={previousDay}>
     <Icon class="i-mdi-chevron-left p-2" />
   </Button>
-  <h3 class="mx-2 w-full text-center">{formatDate(currentDate)}</h3>
+  <h3 class="mx-2 w-full text-center">{formatDate($selectedDate)}</h3>
   <Button color="secondary" variant="text" onclick={nextDay}>
     <Icon class="i-mdi-chevron-right p-2" />
   </Button>
