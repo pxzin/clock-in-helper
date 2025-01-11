@@ -38,6 +38,7 @@
     "vite": "^6.0.5"
   },
   "dependencies": {
-    "@unocss/reset": "^0.65.3"
+    "@unocss/reset": "^0.65.3",
+    "date-fns-tz": "^3.2.0"
   }
 }
