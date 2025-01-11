@@ -1,6 +1,13 @@
-export const formatDate = (date: Date | string): string => {
+import { toZonedTime, format } from 'date-fns-tz';
+
+export const formatDate = (
+  date: Date | string,
+  timeZone: string = 'America/Sao_Paulo',
+): string => {
   if (typeof date === 'string') {
     date = new Date(date);
   }
-  return date.toISOString().split('T')[0];
+
+  const zonedDate = toZonedTime(date, timeZone);
+  return format(zonedDate, 'yyyy-MM-dd', { timeZone });
 };

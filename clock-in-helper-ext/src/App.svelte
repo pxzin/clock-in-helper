@@ -2,7 +2,16 @@
   import { Button, Card } from '$lib/components/primitives';
   import { Clock, DateSelector, Header, Icon } from '$lib/components';
   import DayEntries from '$lib/components/DayEntries.svelte';
-  import { dataSet } from '$lib/store/dataSet';
+  import { dataSet, type DataSetItemType } from '$lib/store/dataSet';
+  import Carousel from '$lib/components/Carousel.svelte';
+  import { findIndexOfDate } from '$lib/utils/findIndexOfDate';
+  import { selectedDate } from '$lib/store/selectedDate';
+
+  let activeDataIndex = $state(findIndexOfDate($dataSet, $selectedDate));
+
+  $effect(() => {
+    activeDataIndex = findIndexOfDate($dataSet, $selectedDate);
+  });
 </script>
 
 <main class="font-mono w-30rem bg-gray1 text-gray12 min-h-screen p-4">
@@ -17,10 +26,39 @@
         >Edit <Icon class="i-mdi-pen p-2 ml-2" /></Button
       >
     </div>
+    {#if $selectedDate.toISOString().split('T')[0] !== new Date()
+        .toISOString()
+        .split('T')[0]}
+      <button
+        onclick={() => {
+          selectedDate.update(() => new Date());
+        }}>pular para hoje</button
+      >
+    {/if}
   </Card>
-  {#each $dataSet as { date, entries }}
-    <DayEntries {date} {entries} totalHours={2} />
-  {/each}
+  {#if activeDataIndex >= 0}
+    <Carousel dataSet={$dataSet} showControls={false} startAt={activeDataIndex}>
+      {#snippet item({ date, entries }: DataSetItemType)}
+        <DayEntries {date} {entries} totalHours={1} />
+      {/snippet}
+    </Carousel>
+  {:else}
+    <p>Você ainda não registrou entradas hoje</p>
+  {/if}
+
+  <button
+    onclick={() => {
+      dataSet.update(() => [
+        ...$dataSet,
+        {
+          description: '',
+          date: String(new Date()),
+          entries: [String(new Date())],
+        },
+      ]);
+    }}>Adiciona dia</button
+  >
+
   <!-- <Card>
     <h2 class="text-lg font-bold mb-2">Registros de Dezembro - 2024</h2>
     <ul>
