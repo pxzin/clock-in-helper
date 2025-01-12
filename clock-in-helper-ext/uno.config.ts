@@ -2,6 +2,7 @@ import { defineConfig, presetIcons, presetUno } from 'unocss';
 import { presetRadix } from 'unocss-preset-radix';
 import presetWebFonts from '@unocss/preset-web-fonts';
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local';
+import { presetScrollbar } from 'unocss-preset-scrollbar';
 
 export default defineConfig({
   presets: [
@@ -32,6 +33,9 @@ export default defineConfig({
         // Base URL to serve the fonts from the client
         fontServeBaseUrl: '/assets/fonts',
       }),
+    }),
+    presetScrollbar({
+      scrollbarThumbColor: 'black',
     }),
   ],
   theme: {
