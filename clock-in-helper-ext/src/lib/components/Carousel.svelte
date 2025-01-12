@@ -71,6 +71,4 @@
       >Next</button
     >
   {/if}
-
-  O X dentro do carrossel = {startAt}
 </div>

@@ -6,6 +6,9 @@
   import Carousel from '$lib/components/Carousel.svelte';
   import { findIndexOfDate } from '$lib/utils/findIndexOfDate';
   import { selectedDate } from '$lib/store/selectedDate';
+  import { formatStartOfDay } from '$lib/utils/formatDate';
+  import { fly } from 'svelte/transition';
+  import { cubicOut } from 'svelte/easing';
 
   let activeDataIndex = $state(findIndexOfDate($dataSet, $selectedDate));
 
@@ -14,10 +17,12 @@
   });
 </script>
 
-<main class="font-mono w-30rem bg-gray1 text-gray12 min-h-screen p-4">
+<main
+  class="font-mono w-30rem h-37rem bg-gray1 text-gray12 p-2 overflow-hidden"
+>
   <Header subtitle="Simplifique seu registro de horas" />
 
-  <Card class="bg-base1 my-2">
+  <Card class="bg-base1 mt-2">
     <DateSelector />
     <Clock />
     <div class="flex justify-between gap-2 py-4">
@@ -37,27 +42,26 @@
     {/if}
   </Card>
   {#if activeDataIndex >= 0}
-    <Carousel dataSet={$dataSet} showControls={false} startAt={activeDataIndex}>
-      {#snippet item({ date, entries }: DataSetItemType)}
-        <DayEntries {date} {entries} totalHours={1} />
-      {/snippet}
-    </Carousel>
+    <div transition:fly={{ x: -200, duration: 300, easing: cubicOut }}>
+      <Carousel
+        dataSet={$dataSet}
+        showControls={false}
+        startAt={activeDataIndex}
+      >
+        {#snippet item({ date, entries }: DataSetItemType)}
+          <DayEntries {date} {entries} totalHours={1} />
+        {/snippet}
+      </Carousel>
+    </div>
   {:else}
-    <p>Você ainda não registrou entradas hoje</p>
+    <div transition:fly={{ x: 200, duration: 300, easing: cubicOut }}>
+      <DayEntries
+        date={formatStartOfDay($selectedDate)}
+        entries={[]}
+        totalHours={0}
+      />
+    </div>
   {/if}
-
-  <button
-    onclick={() => {
-      dataSet.update(() => [
-        ...$dataSet,
-        {
-          description: '',
-          date: String(new Date()),
-          entries: [String(new Date())],
-        },
-      ]);
-    }}>Adiciona dia</button
-  >
 
   <!-- <Card>
     <h2 class="text-lg font-bold mb-2">Registros de Dezembro - 2024</h2>
