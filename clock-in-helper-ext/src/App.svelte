@@ -1,19 +1,23 @@
 <script lang="ts">
   import { Button, Card } from '$lib/components/primitives';
-  import { Clock, DateSelector, Header, Icon } from '$lib/components';
-  import DayEntries from '$lib/components/DayEntries.svelte';
+  import {
+    Clock,
+    DateSelector,
+    Header,
+    Icon,
+    Carousel,
+    DayEntries,
+  } from '$lib/components';
+  import { findIndexOfDate, formatStartOfDay } from '$lib/utils';
   import { dataSet, type DataSetItemType } from '$lib/store/dataSet';
-  import Carousel from '$lib/components/Carousel.svelte';
-  import { findIndexOfDate } from '$lib/utils/findIndexOfDate';
-  import { selectedDate } from '$lib/store/selectedDate';
-  import { formatStartOfDay } from '$lib/utils/formatDate';
-  import { fly } from 'svelte/transition';
-  import { cubicOut } from 'svelte/easing';
+  import { selectedDateStore } from '$lib/store/selectedDate.svelte';
 
-  let activeDataIndex = $state(findIndexOfDate($dataSet, $selectedDate));
+  const { date: selectedDate, set: setSelectedDate } = selectedDateStore;
+
+  let activeDataIndex = $state(findIndexOfDate($dataSet, selectedDate.value));
 
   $effect(() => {
-    activeDataIndex = findIndexOfDate($dataSet, $selectedDate);
+    activeDataIndex = findIndexOfDate($dataSet, selectedDate.value);
   });
 </script>
 
@@ -31,18 +35,18 @@
         >Edit <Icon class="i-mdi-pen p-2 ml-2" /></Button
       >
     </div>
-    {#if $selectedDate.toISOString().split('T')[0] !== new Date()
+    {#if selectedDate.value.toISOString().split('T')[0] !== new Date()
         .toISOString()
         .split('T')[0]}
       <button
         onclick={() => {
-          selectedDate.update(() => new Date());
+          selectedDate.value = new Date();
         }}>pular para hoje</button
       >
     {/if}
   </Card>
   {#if activeDataIndex >= 0}
-    <div transition:fly={{ x: -200, duration: 300, easing: cubicOut }}>
+    <div>
       <Carousel
         dataSet={$dataSet}
         showControls={false}
@@ -54,9 +58,9 @@
       </Carousel>
     </div>
   {:else}
-    <div transition:fly={{ x: 200, duration: 300, easing: cubicOut }}>
+    <div>
       <DayEntries
-        date={formatStartOfDay($selectedDate)}
+        date={formatStartOfDay(selectedDate.value)}
         entries={[]}
         totalHours={0}
       />
